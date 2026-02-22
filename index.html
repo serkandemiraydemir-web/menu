@@ -158,15 +158,18 @@ body.admin-active .cat-card-img-upload { display: block; }
   width: 88px; height: 88px; flex-shrink: 0; overflow: hidden;
   background: linear-gradient(135deg, #f5c40015, #f5c40035);
   display: flex; align-items: center; justify-content: center;
-  font-size: 2rem; position: relative; cursor: pointer;
+  font-size: 2rem; position: relative;
+  pointer-events: none;
 }
+body.admin-active .item-img-wrap { pointer-events: auto; cursor: pointer; }
 .item-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
 .item-upload-hint {
   position: absolute; inset: 0; background: rgba(0,0,0,0.5);
   color: white; font-size: 0.6rem; font-weight: 800;
   display: none; align-items: center; justify-content: center; text-align: center;
+  pointer-events: none;
 }
-body.admin-active .item-upload-hint { display: flex; }
+body.admin-active .item-upload-hint { display: flex; pointer-events: auto; }
 .item-body { flex: 1; padding: 10px 14px; }
 .item-name { font-weight: 800; font-size: 0.92rem; color: var(--text); font-family: var(--font-main); }
 .item-sub { font-size: 0.73rem; color: var(--muted); margin-top: 2px; font-style: italic; }
@@ -686,7 +689,7 @@ function openDetail(catIdx) {
       : `<div class="price-single">₺${item.price}</div>`;
     const subHTML = item.sub ? `<div class="item-sub">${item.sub}</div>` : '';
     return `<div class="menu-item">
-      <div class="item-img-wrap" onclick="triggerImg('item','${item.id}')">
+      <div class="item-img-wrap" onclick="if(document.body.classList.contains('admin-active'))triggerImg('item','${item.id}')">
         ${imgHTML}
         <div class="item-upload-hint">📷<br>Resim Yükle</div>
       </div>
