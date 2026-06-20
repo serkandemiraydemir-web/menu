@@ -1,1 +1,1 @@
-# qr menu guzeloba
+# qr menu
